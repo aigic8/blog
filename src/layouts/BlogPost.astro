@@ -1,0 +1,27 @@
+---
+import type { BlogPostFrontmatter } from "../lib/types"
+
+const { frontmatter }  = Astro.props as { frontmatter: BlogPostFrontmatter}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{frontmatter.title}</title>
+</head>
+<body>
+  <main>
+  <h1>{frontmatter.title}</h1>
+  <p>{frontmatter.description}</p>
+  <p>PubDate: {frontmatter.pubDate.toString()}</p>
+  <div>
+  {frontmatter.tags.map(tag => (<div>{tag}</div>))}
+</div>
+  <div class="post">
+    <slot></slot>
+  </div>
+</main>
+</body>
+</html>
