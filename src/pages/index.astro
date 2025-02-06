@@ -1,20 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import type { MarkdownInstance } from 'astro';
-import type { BlogPostFrontmatter } from '../lib/types';
+import Layout from "../layouts/Layout.astro";
+import type { MarkdownInstance } from "astro";
+import type { BlogPostFrontmatter } from "../lib/types";
 
-const posts = Object.values(import.meta.glob<MarkdownInstance<BlogPostFrontmatter>>('./posts/*.md', { eager: true }));
-
+const posts = Object.values(
+  import.meta.glob<MarkdownInstance<BlogPostFrontmatter>>("./posts/*.md", {
+    eager: true,
+  }),
+);
 ---
 
 <Layout>
-	{
-	posts.map(post => (
-	<a href={post.url}>
-		<article>
-			<h2>{post.frontmatter.title}</h2>
-		</article>
-	</a>
-	))
-	}
+  {
+    posts.map((post) => (
+      <a href={post.url}>
+        <article>
+          <h2>{post.frontmatter.title}</h2>
+        </article>
+      </a>
+    ))
+  }
 </Layout>

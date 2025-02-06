@@ -9,6 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.2.5"
+    "@astrojs/rss": "^4.0.11",
+    "@tailwindcss/vite": "^4.0.3",
+    "astro": "^5.2.5",
+    "dayjs": "^1.11.13",
+    "tailwindcss": "^4.0.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }

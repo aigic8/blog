@@ -1,27 +1,71 @@
 ---
-import type { BlogPostFrontmatter } from "../lib/types"
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
-const { frontmatter }  = Astro.props as { frontmatter: BlogPostFrontmatter}
+import "../styles/global.css";
+import { SITE_URL } from "../lib/consts";
+import type { BlogPostFrontmatter } from "../lib/types";
+
+function formatDate(date: Date) {
+  const d = dayjs(date);
+  dayjs.extend(relativeTime);
+  const diffDays = dayjs().diff(d, "days");
+
+  if (diffDays < 7) {
+    let base = "";
+    if (diffDays === 0) {
+      return d.fromNow();
+    } else if (diffDays === 1) {
+      base = "Yesterday";
+    } else {
+      base = `${diffDays} Days ago`;
+    }
+
+    return `${base} at ${d.hour()}:${d.minute()}`;
+  }
+
+  return d.format("YYYY-MM-DD HH:MM");
+}
+
+const { frontmatter } = Astro.props as { frontmatter: BlogPostFrontmatter };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{frontmatter.title}</title>
-</head>
-<body>
-  <main>
-  <h1>{frontmatter.title}</h1>
-  <p>{frontmatter.description}</p>
-  <p>PubDate: {frontmatter.pubDate.toString()}</p>
-  <div>
-  {frontmatter.tags.map(tag => (<div>{tag}</div>))}
-</div>
-  <div class="post">
-    <slot></slot>
-  </div>
-</main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aigic 8 - {frontmatter.title}</title>
+  </head>
+  <body class="bg-emerald-100 max-w-3xl mx-auto">
+    <script></script>
+    <header
+      class="bg-emerald-100 flex items-center h-16 rounded-full border-neutral-400 border px-8 mt-12 mb-24"
+    >
+      <!-- TODO: add logo -->
+      <a href={SITE_URL}>
+        <div>Aigic8 Blog</div>
+      </a>
+      <div class="flex-1"></div>
+    </header>
+    <main>
+      <h1 class="text-6xl">{frontmatter.title}</h1>
+      <div class="h-3"></div>
+      <p class="text-lg text-black/50 font-light">{frontmatter.description}</p>
+      <div class="h-2"></div>
+      <p class="text-black/50 font-light text-sm">
+        {formatDate(frontmatter.pubDate)}
+      </p>
+      <div class="h-2"></div>
+      <div
+        class="inline-block text-emerald-500 border-b-4 border-b-emerald-500 mb-2 font-bold pl-8 py-2 uppercase"
+      >
+        {frontmatter.category}
+      </div>
+      <div class="h-10"></div>
+      <div class="post">
+        <slot />
+      </div>
+    </main>
+  </body>
 </html>

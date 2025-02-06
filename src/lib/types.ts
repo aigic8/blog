@@ -1,6 +1,10 @@
 export interface BlogPostFrontmatter {
-	title: string
-	pubDate: Date
-	description: string
-	tags: string[]
+  title: string;
+  description: string;
+  // TODO: add summary to BlogPosts later
+  // summary: string;
+  pubDate: Date;
+  lastEditDate: Date;
+  category: string;
+  authors: string[];
 }
