@@ -10,7 +10,7 @@ This was a problem that I had for couple of weeks and it was not easy finding a 
 
 # Environment and Info
 
-I had this problem recently both on Fedora and Arch which I could not connect to my university eduroam wifi after update. At the time, I was using `Fedora 43` and `Arch update January 2026`. Both of them had the issue after the update, so I suspect the problem maybe from a change in a core wifi utility which is used by both and is also relavant in other distros as well. Also, eduroam for each university/environment is configured differently this only the solution that worked for me but it is at least worth a try I guess.
+I had this problem recently both on Fedora and Arch which I could not connect to my university eduroam wifi after update. At the time, I was using `Fedora 43` and `Arch update January 2026`. Both of them had the issue after the update, so I suspect the problem maybe from a change in a core wifi utility which is used by both and is also relavant in other distros as well. Also, eduroam for each environment is configured differently this only the solution that worked for me but it is at least worth a try I guess.
 
 # The problem
 
