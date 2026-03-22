@@ -1,4 +1,4 @@
-baseURL = 'blog.aigic8.com'
+baseURL = 'https://blog.aigic8.com/'
 languageCode = 'en-us'
 title = 'Aigic8'
 theme = 'rusty-typewriter'
